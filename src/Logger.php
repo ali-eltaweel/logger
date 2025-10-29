@@ -7,13 +7,22 @@ namespace Logger;
  * 
  * @api
  * @since 1.0.0
- * @version 1.0.0
+ * @version 1.1.0
  * @package logger
  * @author Ali M. Kamel <ali.kamel.dev@gmail.com>
  */
 class Logger {
 
-    public function __construct(private Driver $driver) {}
+    /**
+     * Creates a new logger.
+     * 
+     * @api
+     * @since 1.0.0
+     * @version 1.1.0
+     * 
+     * @param IDriver $driver The logging driver.
+     */
+    public function __construct(private IDriver $driver) {}
 
     /**
      * Logs an emergency message.
