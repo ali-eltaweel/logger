@@ -1,0 +1,20 @@
+{
+    "name": "ali-eltaweel/logger",
+    "version": "1.0.0",
+    "description": "Logger",
+    "maintainers": [
+        {
+            "name": "Ali M. Kamel",
+            "email": "ali.kamel.dev@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.2",
+        "ali-eltaweel/dto": "^1.5.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "Logger\\": "src/"
+        }
+    }
+}
