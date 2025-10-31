@@ -1,6 +1,6 @@
 {
     "name": "ali-eltaweel/logger",
-    "version": "1.1.0",
+    "version": "2.0.0",
     "description": "Logger",
     "maintainers": [
         {
@@ -10,7 +10,8 @@
     ],
     "require": {
         "php": "^8.2",
-        "ali-eltaweel/dto": "^1.5.2"
+        "ali-eltaweel/dto": "^1.5.2",
+        "ali-eltaweel/bitmask": "^1.0"
     },
     "autoload": {
         "psr-4": {

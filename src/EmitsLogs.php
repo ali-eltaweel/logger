@@ -7,7 +7,7 @@ namespace Logger;
  * 
  * @api
  * @since 1.1.0
- * @version 1.0.0
+ * @version 2.0.0
  * @package logger
  * @author Ali M. Kamel <ali.kamel.dev@gmail.com>
  */
@@ -18,21 +18,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function emergencyLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function emergencyLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::EMERGENCY,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::EMERGENCY, $callback, $unit);
     }
 
     /**
@@ -40,21 +34,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function alertLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function alertLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::ALERT,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::ALERT, $callback, $unit);
     }
 
     /**
@@ -62,21 +50,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function criticalLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function criticalLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::CRITICAL,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::CRITICAL, $callback, $unit);
     }
 
     /**
@@ -84,21 +66,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function errorLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function errorLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::ERROR,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::ERROR, $callback, $unit);
     }
 
     /**
@@ -106,21 +82,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function warningLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function warningLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::WARNING,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::WARNING, $callback, $unit);
     }
 
     /**
@@ -128,21 +98,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function noticeLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function noticeLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::NOTICE,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::NOTICE, $callback, $unit);
     }
 
     /**
@@ -150,21 +114,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function infoLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function infoLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::INFO,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::INFO, $callback, $unit);
     }
 
     /**
@@ -172,21 +130,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array<string, mixed> $context
-     * @param mixed $unit
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function debugLog(string $message, array $context = [], ?string $unit = null): void {
+    protected function debugLog(callable $callback, ?string $unit = null): void {
 
-        $this->log([
-            'level'    => LogLevel::DEBUG,
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit
-        ]);
+        $this->log(LogLevel::DEBUG, $callback, $unit);
     }
 
     /**
@@ -194,19 +146,15 @@ trait EmitsLogs {
      * 
      * @internal
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param array{level: LogLevel, message: string, context: array<string, mixed>, unit: ?string} $record
+     * @param LogLevel $level
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
      * @return void
      */
-    protected function log(array $record): void {
+    protected function log(LogLevel $level, callable $callback, ?string $unit = null): void {
 
-        $this->logger?->log([
-            'level'    => $record['level'],
-            'message'  => $record['message'],
-            'context'  => $record['context'] ?? [],
-            'unit'     => $record['unit'] ?? null,
-            'instance' => spl_object_id($this),
-        ]);
+        $this->logger?->log($level, $callback, $unit, spl_object_id($this));
     }
 }

@@ -7,7 +7,7 @@ namespace Logger;
  * 
  * @api
  * @since 1.0.0
- * @version 1.1.0
+ * @version 2.0.0
  * @package logger
  * @author Ali M. Kamel <ali.kamel.dev@gmail.com>
  */
@@ -18,34 +18,27 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.1.0
+     * @version 1.2.0
      * 
-     * @param IDriver $driver The logging driver.
+     * @param Driver\IDriver $driver The logging driver.
      */
-    public function __construct(private IDriver $driver) {}
+    public function __construct(private Driver\IDriver $driver) {}
 
     /**
      * Logs an emergency message.
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function emergency(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function emergency(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -53,23 +46,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function alert(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function alert(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -77,23 +63,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function critical(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function critical(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -101,23 +80,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function error(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function error(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -125,23 +97,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function warning(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function warning(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -149,23 +114,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function notice(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function notice(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -173,23 +131,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function info(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function info(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -197,23 +148,16 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param string $message
-     * @param array $context
-     * @param mixed $unit
-     * @param mixed $instance
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function debug(string $message, array $context = [], ?string $unit = null, ?string $instance = null): void {
+    public function debug(callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->log([
-            'level'    => LogLevel::from(__FUNCTION__),
-            'message'  => $message,
-            'context'  => $context,
-            'unit'     => $unit,
-            'instance' => $instance,
-        ]);
+        $this->log(__FUNCTION__, $callback, $unit, $instance);
     }
 
     /**
@@ -221,13 +165,39 @@ class Logger {
      * 
      * @api
      * @since 1.0.0
-     * @version 1.0.0
+     * @version 2.0.0
      * 
-     * @param LogRecord|array{level: LogLevel, unit: ?string, instance: ?string, message: string, context: ?array} $record The log record to be logged.
+     * @param LogLevel|string $level
+     * @param callable(): array<string, array> $callback
+     * @param ?string $unit
+     * @param ?string $instance
      * @return void
      */
-    public function log(LogRecord|array $record): void {
+    public function log(LogLevel|string $level, callable $callback, ?string $unit = null, ?string $instance = null): void {
 
-        $this->driver->log(is_array($record) ? LogRecord::fromArray($record) : $record);
+        $level = is_string($level) ? LogLevel::from($level) : $level;
+
+        if (!$this->driver->accept($level, $unit, $instance)) {
+            
+            return;
+        }
+
+        $log = $callback();
+        $message = array_key_first($log);
+        $context = $log[$message];
+
+        if (is_int($message)) {
+            
+            $message = $context;
+            $context = [];
+        }
+
+        $this->driver->log(LogRecord::fromArray([
+            'level'    => $level,
+            'message'  => $message,
+            'context'  => $context,
+            'unit'     => $unit,
+            'instance' => $instance,
+        ]));
     }
 }

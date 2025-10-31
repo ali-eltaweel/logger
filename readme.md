@@ -19,13 +19,10 @@ composer require ali-eltaweel/logger
 ## Usage
 
 ```php
-$driver = new class implements Logger\Driver {
-    
-  public function log(Logger\LogRecord $record): void {
+$driver = Logger\Driver\Driver::fromCallable('info|warning', function (LogRecord $record): void {
 
-    echo json_encode($record->toArray()) . "\n";
-  }
-};
+  echo json_encode($record->toArray()) . "\n";
+});
 
 $logger = new Logger\Logger($driver);
 ```
@@ -37,15 +34,9 @@ class LogSubject {
 
   public function doSomething(): void {
       
-    $this->logger->info('Doing something important', ['time' => time()], static::class, spl_object_id($this));
+    $this->logger->info(fn() => ['Doing something important' => ['time' => time()]], static::class, spl_object_id($this));
     
-    // $this->logger->log([
-    //     'level'    => Logger\LogLevel::INFO,
-    //     'message'  => 'Doing something important',
-    //     'context'  => ['time' => time()],
-    //     'unit'     => static::class,
-    //     'instance' => spl_object_id($this),
-    // ]);
+    // $this->logger->log(LogLevel::INFO, fn() => ['Doing something important' => ['time' => time()]], static::class, spl_object_id($this));
   }
 }
 
